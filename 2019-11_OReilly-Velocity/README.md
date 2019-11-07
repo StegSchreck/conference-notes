@@ -90,3 +90,72 @@ O'Reilly learning platform 90 days for free `VLSAEU19`
 - using less AWS basic services, but more K8s
 - offering K8s as a platform to reduce complexity for the devs
 - treat platform as product (reivews, product management, resilience, etc.)
+
+## 07.11. - Thursday
+
+### Keynote
+- Ingrid Burrington: *missed because call from Munich* 
+- Jennifer Davis (Microsoft): it's not about adopting buzzwords like "Dev(Sec)Ops", but to build communities. Learn from each other and from you mistakes.
+- Dave Cheney (WMware)
+- Lena Reinhard (CircleCI): connection, collaboration, communication. clear, crisp messages, anticipating counter questions. avoid idioms.
+- Kelly Shortridge (Capsule8): bringing security thinking to DevOps - D.I.E. - Distributed, Immutable, Ephemeral
+
+### 11:35 - What happens when you type de.wikipedia.org?
+*Effie Mouzeli (Wikimedia Foundation), Alexandros Kosiaris (Wikimedia Foundation)*
+- LAMP stack monolith broken up to SOA (microservices)
+- adopting K8s
+- Kafka message queueing
+- 5 data centers across the globe, own CDN
+- moving from varnish cache to ATS
+
+### 13:25 - Taking the ops out of DevOps
+*Eleanor Saitta (Systems Structure ltd.)*
+- the more work a human has to do to see or influence the state, the less net bandwidth (cognitive capacity)
+- comparing strings is very hard for humans (searching for typos) --> configuration changes need to be verified
+- good tools have: immediacy, fluency, Clarity, predictability, isolation, reversibility
+- do not patch your systems - rebuild them from scratch --> immutable systems
+- separate data from applications, even warm caches
+- everything as code - everything goes through the same CI/CD framework - even during outages
+- everything for running that application lives in the same repo
+- debugging IaC (e.g. Terraform) is hard
+- legacy systems are a hurdle for innovation
+
+### 14:20 - Helping your dev teams succeed at ops, post-Kubernetes
+*Michael Hobbs (MOO)*
+- created a template app to ease the start at K8s
+- embedded ops engineers in product teams
+- k8s workshop (facilitator was shadowed and only did it once)
+- Namespaces and quotas per resource limits (generous)
+  - breaking qoutas as basis for a conversation
+- monitored heavily and team-specific alert channels
+  - auto test the alerts
+- make informed decisions for alerts - first collect reference data
+- have a conversation with the teams about what they are missing (e.g. in terms of observability)
+
+### 15:50 - Revolutionizing a bank: Introducing service mesh and a secure container platform
+*Janna Brummel (ING Netherlands), Robin van Zijll (ING Netherlands)*
+- customer demands fast adapting, increasingly convenient, secure banking solution
+- from peak load sized on prem to scalable, HA cloud solution
+- using containers: from pets to cattle
+- using service mesh for easy networking with built-in security best practices
+- containerize application -> create CI/CD pipeline for containers -> run container on platform -> define team policies
+- working with industry standers lets new hires get productive very fast
+- automate toil wherever and whenever we can
+- looking into new capabilities: chaos engineering, zero trust, everything pipeline
+
+### 16:45 - Test-driven development (TDD) for infrastructure
+*Rosemary Wang (HashiCorp)*
+- why does it look like a signpost? YOLO-driven development, lack og knowledge, lack of automation, lack of tooling
+- unit tests
+  - conftest & `terraform validate`
+  - unit test without calling out to AWS
+  - unit test just checks TF file, but no logic or resource dependencies
+- contract tests
+  - "real" resources not required, validating interactions, compare infrastructure *state*
+  - conftest & `terraform plan`
+- integration tests
+  - confirms *interaction* betwee 2+ resources, real resources
+  - `terratest`, `kitchen-terraform`, `Sentinel`
+- E2E tests
+  - manual or fully automated
+  - or smoke tests
